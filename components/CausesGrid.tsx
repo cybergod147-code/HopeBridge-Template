@@ -1,0 +1,18 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { DonationModal } from "./DonationModal";
+
+const causes = [
+  { title: "Clean Water Initiative", category: "Health & dignity", raised: "$184,290", goal: "$250,000", progress: 74, image: "https://images.unsplash.com/photo-1538300342682-cf57afb97285?auto=format&fit=crop&w=1000&q=85", size: "large" },
+  { title: "Girls in STEM", category: "Education", raised: "$92,440", goal: "$120,000", progress: 77, image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=900&q=85", size: "small" },
+  { title: "Emergency Relief", category: "Rapid response", raised: "$214,870", goal: "$300,000", progress: 71, image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=1000&q=85", size: "small" },
+  { title: "Climate Resilience", category: "Environment", raised: "$66,180", goal: "$100,000", progress: 66, image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1000&q=85", size: "wide" }
+];
+
+export function CausesGrid() {
+  const [open, setOpen] = useState(false);
+  return <section id="work" className="px-5 py-20 lg:px-10"><div className="mx-auto max-w-7xl"><div className="flex flex-wrap items-end justify-between gap-6"><div><div className="mb-4 text-xs font-bold uppercase tracking-[.2em] text-emerald-700 dark:text-amber-300">Where hope meets action</div><h2 className="font-display text-4xl tracking-[-.03em] sm:text-5xl">Causes worth moving for.</h2></div><p className="max-w-sm text-sm leading-6 text-ink-500 dark:text-white/55">Community-led projects. Measurable outcomes. A clear view of every step between your gift and its impact.</p></div><div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{causes.map((cause, index) => <motion.article key={cause.title} whileHover={{ y: -5 }} className={`group relative overflow-hidden rounded-[1.75rem] bg-emerald-950 text-white ${cause.size === "large" ? "md:row-span-2" : ""} ${cause.size === "wide" ? "lg:col-span-2" : ""}`}><div className={`${cause.size === "large" ? "min-h-[510px]" : "min-h-[330px]"} absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105`} style={{ backgroundImage: `url(${cause.image})` }} /><div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-emerald-950/20 to-transparent" /><div className="relative flex min-h-[330px] flex-col justify-end p-6"><span className="mb-auto w-fit rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-xs font-semibold backdrop-blur">{cause.category}</span><h3 className="font-display text-3xl tracking-[-.02em]">{cause.title}</h3><div className="mt-5 flex items-center justify-between text-sm"><span className="text-white/70"><strong className="text-white">{cause.raised}</strong> raised</span><span className="text-white/55">of {cause.goal}</span></div><div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/20"><motion.div initial={{ width: 0 }} whileInView={{ width: `${cause.progress}%` }} viewport={{ once: true }} transition={{ duration: 1.2, delay: index * .1 }} className="h-full rounded-full bg-amber-400" /></div><button onClick={() => setOpen(true)} className="mt-5 flex max-h-0 items-center gap-2 overflow-hidden font-bold text-amber-300 opacity-0 transition-all duration-300 group-hover:max-h-12 group-hover:opacity-100">Support this cause <ArrowUpRight size={17} /></button></div></motion.article>)}</div></div><DonationModal open={open} onClose={() => setOpen(false)} /></section>;
+}

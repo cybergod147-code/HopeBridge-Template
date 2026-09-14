@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #f7faf8; color: #13211f; font-family: var(--font-inter), Arial, sans-serif; }
+.dark body { background: #091d18; color: #edf7f2; }
+::selection { background: #f5bc52; color: #13211f; }
+@layer utilities {
+  .glass { background: rgba(255,255,255,.78); border: 1px solid rgba(255,255,255,.6); backdrop-filter: blur(18px); }
+  .dark .glass { background: rgba(12,46,38,.78); border-color: rgba(196,235,219,.12); }
+  .text-balance { text-wrap: balance; }
+}

@@ -1,0 +1,1 @@
+Reserved integration boundary for server-only Stripe payment intents, Supabase donation records, and Sanity CMS clients. Keep secrets and service-role keys in server modules under this directory.
